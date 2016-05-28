@@ -1,0 +1,51 @@
+{
+  "environment":"production",
+  "authorization": {
+    "sudo": {
+      "users": ["deploy"]
+    }
+  },
+  "monit": {
+    "enable_emails" : false,
+    "mailserver" : {
+      "host" : "REPLACE.example.com",
+      "port" : "999",
+      "username" : "REPLACE",
+      "password" : "REPLACE",
+      "hostname" : "REPLACE"
+    },
+    "notify_emails" : ["csimmons@square-root.com"],
+    "web_interface" : {
+      "allow" : ["cooper","thisismypw"]
+    }
+  },
+  "postgresql" : {
+    "password" : {
+      "postgres" : "$1$ARc5GZid$YEe/dMkLYOTynwSLHTGJY1"
+    }
+  },
+  "rbenv":{
+    "rubies": [
+      "2.1.2"
+    ],
+    "global" : "2.1.2",
+    "gems": {
+      "2.1.2" : [
+        {"name":"bundler"}
+      ]
+    }
+  },
+  "vagrant" : {
+    "exclusions" : [],
+    "ip" : "192.168.1.32",
+    "name" : "rails-postgres-redis1"
+  },
+  "run_list":
+  [
+    "role[server]",
+    "role[nginx-server]",
+    "role[postgres-server]",
+    "role[rails-app]",
+    "role[redis-server]"
+  ]
+}
